@@ -1,0 +1,109 @@
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Para o amor da minha vida</title>
+    <meta name="description" content="Uma surpresa especial de amor.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <div class="hearts" aria-hidden="true"></div>
+
+    <section class="reveal-screen" id="revealScreen">
+      <div class="reveal-content">
+        <div class="heart-logo" aria-hidden="true">♥</div>
+        <p>Uma surpresa especial te espera</p>
+        <button class="reveal-button" id="revealButton" type="button">
+          <span>♥</span>
+          <strong>Clique aqui, amor</strong>
+          <span>♥</span>
+        </button>
+        <small>Toque para revelar</small>
+      </div>
+    </section>
+
+    <main class="site-shell" id="siteShell" aria-hidden="true">
+      <section class="hero">
+        <div class="heart-logo hero-heart" aria-hidden="true">♥</div>
+        <h1 id="mainTitle">Para o amor da minha vida!</h1>
+        <p class="since-line" id="sinceLine">Juntos desde 01 de agosto de 2025</p>
+        <div class="counter" aria-label="Tempo juntos">
+          <div class="counter-grid">
+            <article>
+              <strong id="monthsCount">0</strong>
+              <span>Meses</span>
+            </article>
+            <article>
+              <strong id="daysRemainder">0</strong>
+              <span>Dias</span>
+            </article>
+          </div>
+          <div class="time-pill" aria-label="Total de horas juntos">
+            <strong id="timeCount">0</strong>
+            <span>horas juntos</span>
+          </div>
+        </div>
+        <p class="total-days" id="totalDays">São 0 dias de amor</p>
+      </section>
+
+      <section class="music-card glass-card">
+        <div class="section-icon" aria-hidden="true">♫</div>
+        <h2>Nossa Música</h2>
+        <p>A trilha sonora do nosso amor</p>
+        <iframe
+          id="spotifyPlayer"
+          class="spotify-player"
+          title="Nossa música no Spotify"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+        <div class="music-notes" aria-hidden="true">♫ ♫ ♫</div>
+      </section>
+
+      <div class="divider" aria-hidden="true"><span>♥</span></div>
+
+      <section class="letter">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <p id="loveLetter"></p>
+        <div class="quote-mark quote-end" aria-hidden="true">"</div>
+      </section>
+
+      <section class="gallery-section">
+        <header class="section-heading">
+          <h2>Nossos Momentos</h2>
+          <p>Memórias que guardamos no coração</p>
+        </header>
+
+        <div class="gallery glass-card">
+          <button class="gallery-arrow prev" id="prevPhoto" type="button" aria-label="Foto anterior">‹</button>
+          <figure>
+            <img id="galleryImage" src="" alt="Foto do casal">
+            <figcaption id="galleryCount">1 / 3</figcaption>
+          </figure>
+          <button class="gallery-arrow next" id="nextPhoto" type="button" aria-label="Próxima foto">›</button>
+          <div class="gallery-dots" id="galleryDots" aria-hidden="true"></div>
+        </div>
+
+        <div class="thumbs" id="thumbs" aria-label="Miniaturas das fotos"></div>
+      </section>
+
+      <section class="timeline-section">
+        <header class="section-heading">
+          <h2>Nossa História</h2>
+          <p>Momentos que marcaram nossa jornada</p>
+        </header>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="closing-section glass-card" id="closingSection"></section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
