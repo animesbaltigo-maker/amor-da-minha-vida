@@ -3,10 +3,10 @@ window.DEAR_YOU_CONFIG = {
   startDate: "2025-08-01T00:00:00",
   startDateLabel: "01 de agosto de 2025",
   letter:
-    "Minha pinguim, desde que a nossa historia começou de verdade, tudo ganhou um lugar diferente dentro de mim. Da praia de Copacabana ao nosso pedido oficial, de Floripa a Fortaleza, cada lembrança tem um pedaço nosso. Voce e meu carinho favorito, minha paz no meio do caos e a pessoa que eu escolheria de novo em todos os dias.",
+    "Minha pinguim, eu não queria fazer uma declaração exagerada, daquelas que parecem prontas. Eu queria deixar aqui uma coisa mais nossa: eu gosto de lembrar que antes de tudo virar namoro, plano e rotina, teve um começo meio improvável, uma praia em Copacabana e a sensação estranha de que alguma coisa tinha ficado marcada. Desde o nosso pedido oficial, eu venho descobrindo o quanto é bom ter você por perto, nas viagens grandes, nos dias comuns e até nos silêncios. Você virou parte do jeito que eu penso no futuro.",
   music: {
     spotifyUrl: "https://open.spotify.com/embed/track/5bFd8Uo2SDsQw6mtRSta1r?utm_source=generator",
-    title: "Nossa Musica"
+    title: "Nossa Música"
   },
   photos: [
     "https://litter.catbox.moe/dxcfn7.jpg",
@@ -17,32 +17,32 @@ window.DEAR_YOU_CONFIG = {
     {
       date: "11 de novembro de 2023",
       title: "Onde tudo começou",
-      description: "Na praia de Copacabana, RJ, um daqueles lugares que parecem guardar o começo de alguma coisa bonita.",
+      description: "Copacabana, RJ. Um começo que talvez na hora parecesse só um encontro, mas que hoje faz muito mais sentido.",
       image: "https://litter.catbox.moe/e17hts.jpg"
     },
     {
       date: "01 de janeiro de 2026",
       title: "Nossa primeira viagem juntos",
-      description: "Floripa, cidade magica, abrindo o ano com uma lembrança que ficou com cara de destino.",
+      description: "Floripa, cidade mágica. Começar o ano ali com você deixou tudo com cara de capítulo novo.",
       image: "https://litter.catbox.moe/0nzek8.jpg"
     },
     {
       date: "28 de maio de 2026",
       title: "Praiouu",
-      description: "Fortaleza, sol, mar e mais um capitulo nosso para lembrar sorrindo.",
+      description: "Fortaleza. Mais uma memória de mar, sol e essa nossa mania boa de transformar lugar em lembrança.",
       image: "https://litter.catbox.moe/tuoy8b.jpg"
     }
   ],
   closing: {
     eyebrow: "Minha pinguim",
-    title: "Do nosso sim para tudo que ainda vem",
+    title: "Ainda tem muita coisa nossa pela frente",
     text:
-      "O pedido oficial de namoro em 01/08/2025 virou nosso ponto de partida. Desde então, cada hora conta: as viagens, as fotos, os planos, os dias comuns e os dias inesqueciveis. Esse cantinho e privado, so nosso, feito para lembrar que o amor tambem mora nos detalhes.",
+      "O pedido oficial em 01/08/2025 não foi só uma data bonita para contar. Foi o momento em que a gente escolheu dar nome para o que já vinha acontecendo. Desde então, cada hora junta conta um pouco dessa escolha: Copacabana, Floripa, Fortaleza, as fotos, os planos, os dias bons e os dias normais também. Esse site é só um jeito de guardar isso sem precisar explicar demais.",
     highlights: [
-      ["Começo da historia", "Copacabana, RJ"],
+      ["Começo da história", "Copacabana, RJ"],
       ["Pedido oficial", "01.08.2025"],
       ["Primeira viagem", "Floripa"],
-      ["Ultimo mar", "Fortaleza"]
+      ["Último mar", "Fortaleza"]
     ]
   }
 };

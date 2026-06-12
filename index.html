@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Para o amor da minha vida</title>
+    <title>Para minha pinguim</title>
     <meta name="description" content="Uma surpresa especial de amor.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,22 +15,29 @@
     <div class="hearts" aria-hidden="true"></div>
 
     <section class="reveal-screen" id="revealScreen">
-      <div class="reveal-content">
+      <div class="reveal-content quiz-card" id="quizCard">
         <div class="heart-logo" aria-hidden="true">♥</div>
-        <p>Uma surpresa especial te espera</p>
-        <button class="reveal-button" id="revealButton" type="button">
-          <span>♥</span>
-          <strong>Clique aqui, amor</strong>
-          <span>♥</span>
-        </button>
-        <small>Toque para revelar</small>
+        <p class="quiz-kicker">Antes da surpresa...</p>
+        <h2 id="quizTitle">Prova de pinguim</h2>
+        <p class="quiz-prompt" id="quizPrompt"></p>
+        <form class="quiz-form" id="quizForm" autocomplete="off">
+          <div class="quiz-answer" id="quizAnswer"></div>
+          <button class="reveal-button quiz-submit" id="revealButton" type="submit">
+            <span>♥</span>
+            <strong id="quizButtonText">Responder</strong>
+            <span>♥</span>
+          </button>
+        </form>
+        <p class="quiz-feedback" id="quizFeedback" role="status"></p>
+        <div class="quiz-progress" id="quizProgress" aria-label="Progresso"></div>
+        <small id="quizHint">A senha é uma lembrança nossa.</small>
       </div>
     </section>
 
     <main class="site-shell" id="siteShell" aria-hidden="true">
       <section class="hero">
         <div class="heart-logo hero-heart" aria-hidden="true">♥</div>
-        <h1 id="mainTitle">Para o amor da minha vida!</h1>
+        <h1 id="mainTitle">Para minha pinguim!</h1>
         <p class="since-line" id="sinceLine">Juntos desde 01 de agosto de 2025</p>
         <div class="counter" aria-label="Tempo juntos">
           <div class="counter-grid">

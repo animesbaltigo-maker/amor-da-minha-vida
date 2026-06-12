@@ -1,7 +1,14 @@
 (function () {
   const config = window.DEAR_YOU_CONFIG;
   const revealScreen = document.getElementById("revealScreen");
-  const revealButton = document.getElementById("revealButton");
+  const quizForm = document.getElementById("quizForm");
+  const quizTitle = document.getElementById("quizTitle");
+  const quizPrompt = document.getElementById("quizPrompt");
+  const quizAnswer = document.getElementById("quizAnswer");
+  const quizFeedback = document.getElementById("quizFeedback");
+  const quizProgress = document.getElementById("quizProgress");
+  const quizHint = document.getElementById("quizHint");
+  const quizButtonText = document.getElementById("quizButtonText");
   const siteShell = document.getElementById("siteShell");
   const spotifyPlayer = document.getElementById("spotifyPlayer");
   const galleryImage = document.getElementById("galleryImage");
@@ -12,6 +19,40 @@
   const closingSection = document.getElementById("closingSection");
   let currentPhoto = 0;
   let galleryTimer;
+  let quizStep = 0;
+
+  const quizSteps = [
+    {
+      title: "Primeira lembrança",
+      prompt: "Quando a gente se viu pela primeira vez?",
+      hint: "Dica: foi em novembro, e essa data virou parte da nossa história.",
+      type: "date",
+      answer: "2023-11-11",
+      success: "Sim. Copacabana guarda esse comecinho."
+    },
+    {
+      title: "Presente internacional",
+      prompt: "Qual animal tinha no seu primeiro presente internacional?",
+      hint: "Dica: pequeno, delicado e com asas.",
+      type: "text",
+      placeholder: "Digite o animal",
+      answers: ["borboleta", "uma borboleta"],
+      success: "Acertou. Uma borboleta, do jeitinho que essa memória merece."
+    },
+    {
+      title: "Complete a frase",
+      prompt: "O amor só parece inútil porque...",
+      hint: "Escolhe com o coração. Aqui tem pegadinha bonita.",
+      type: "choice",
+      options: [
+        "ele ensina sem explicar e fica mesmo quando a lógica vai embora",
+        "ele não precisa fazer sentido pra ser real",
+        "ele transforma qualquer lugar comum em casa"
+      ],
+      answer: 1,
+      success: "Era essa. Algumas coisas são reais justamente antes de fazerem sentido."
+    }
+  ];
 
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -23,11 +64,127 @@
   document.getElementById("loveLetter").textContent = config.letter;
   spotifyPlayer.src = config.music.spotifyUrl;
 
-  revealButton.addEventListener("click", () => {
+  function unlockSite() {
     revealScreen.classList.add("is-hidden");
     siteShell.classList.add("is-visible");
     siteShell.removeAttribute("aria-hidden");
+    setTimeout(() => {
+      revealScreen.setAttribute("hidden", "");
+    }, 720);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function normalizeAnswer(value) {
+    return value
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[.,]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function renderQuizStep() {
+    const step = quizSteps[quizStep];
+    quizTitle.textContent = step.title;
+    quizPrompt.textContent = step.prompt;
+    quizHint.textContent = step.hint;
+    quizFeedback.textContent = "";
+    quizFeedback.className = "quiz-feedback";
+    quizButtonText.textContent = quizStep === quizSteps.length - 1 ? "Abrir surpresa" : "Responder";
+    quizProgress.innerHTML = quizSteps
+      .map((_, index) => `<span class="${index <= quizStep ? "active" : ""}"></span>`)
+      .join("");
+
+    if (step.type === "choice") {
+      quizAnswer.innerHTML = step.options
+        .map(
+          (option, index) => `
+            <label class="choice-option">
+              <input type="radio" name="quizChoice" value="${index}">
+              <span>${option}</span>
+            </label>
+          `
+        )
+        .join("");
+      return;
+    }
+
+    if (step.type === "date") {
+      quizAnswer.innerHTML = `
+        <label class="date-picker-wrap">
+          <span>Escolha no calendário</span>
+          <input
+            class="quiz-input date-input"
+            id="quizInput"
+            name="quizInput"
+            type="date"
+            min="2023-01-01"
+            max="2026-12-31"
+            aria-label="${step.prompt}">
+        </label>
+      `;
+      document.getElementById("quizInput").focus({ preventScroll: true });
+      return;
+    }
+
+    quizAnswer.innerHTML = `
+      <input
+        class="quiz-input"
+        id="quizInput"
+        name="quizInput"
+        type="text"
+        inputmode="text"
+        placeholder="${step.placeholder}"
+        aria-label="${step.prompt}">
+    `;
+    document.getElementById("quizInput").focus({ preventScroll: true });
+  }
+
+  function answerIsCorrect(step) {
+    if (step.type === "choice") {
+      const selected = quizAnswer.querySelector("input:checked");
+      return selected && Number(selected.value) === step.answer;
+    }
+
+    const input = quizAnswer.querySelector("input");
+    if (step.type === "date") {
+      return input.value === step.answer;
+    }
+
+    const value = normalizeAnswer(input.value);
+    return step.answers.some((answer) => normalizeAnswer(answer) === value);
+  }
+
+  quizForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const step = quizSteps[quizStep];
+
+    if (!answerIsCorrect(step)) {
+      quizFeedback.textContent = "Quase, minha pinguim. Tenta de novo com calma.";
+      quizFeedback.className = "quiz-feedback is-wrong";
+      document.getElementById("quizCard").animate(
+        [
+          { transform: "translateX(0)" },
+          { transform: "translateX(-8px)" },
+          { transform: "translateX(8px)" },
+          { transform: "translateX(0)" }
+        ],
+        { duration: 260, easing: "ease-out" }
+      );
+      return;
+    }
+
+    quizFeedback.textContent = step.success;
+    quizFeedback.className = "quiz-feedback is-right";
+
+    if (quizStep === quizSteps.length - 1) {
+      setTimeout(unlockSite, 820);
+      return;
+    }
+
+    quizStep += 1;
+    setTimeout(renderQuizStep, 850);
   });
 
   function updateCounter() {
@@ -133,6 +290,7 @@
 
   updateCounter();
   setInterval(updateCounter, 1000);
+  renderQuizStep();
   renderGallery();
   renderTimeline();
   renderClosing();
